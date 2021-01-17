@@ -42,7 +42,7 @@ function MonacoCodeEditor({ editorChange, initialValue }: MonacoCodeEditorProps)
                value={initialValue}
                language="javascript"
                theme="vs-dark"
-               height={'400px'}
+               height={'100%'}
                options={{
                   wordWrap: 'on',
                   minimap: { enabled: false },

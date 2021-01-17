@@ -4,9 +4,11 @@ interface PreviewProps {
    code: string
 }
 
+
 const html = `
 <html>
-    <head></head>
+    <head>
+    </head>
     <body>
     <div id="root"></div>
     <script>
@@ -37,12 +39,14 @@ function Preview({ code }: PreviewProps) {
 
    return (
       <React.Fragment>
-         <iframe
-            title="code preview"
-            ref={iframe}
-            sandbox="allow-scripts"
-            srcDoc={html}
-         />
+         <div className="preview-wrapper">
+            <iframe
+               title="code preview"
+               ref={iframe}
+               sandbox="allow-scripts"
+               srcDoc={html}
+            />
+         </div>
       </React.Fragment>
    )
 }

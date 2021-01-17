@@ -8,7 +8,6 @@ function App() {
       <React.Fragment>
          <div>
             <CodeEditorItem />
-            {/* <CodeEditorItem /> */}
          </div>
       </React.Fragment>
    );

@@ -1,6 +1,10 @@
+/* EDITOR */
+
 .editor-con {
     position: relative;
     height: 100%;
+    width: 100%;
+    width: calc(100% - 10px);
 }
 
 .editor-con button {
@@ -14,4 +18,58 @@
 
 .editor-con:hover button {
     opacity: 1;
+}
+
+/* IFRAME PREVIEW */
+
+.preview-wrapper {
+    position: relative;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.preview-wrapper iframe {
+    height: 98%;
+    width: 100%;
+    background-color: white;
+    border: none;
+}
+
+.react-draggable-transparent-selection .preview-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+
+/* RESIZE */
+
+.react-resizable-handle {
+    display: block;
+    background-color: #37414b;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.react-resizable-handle-s {
+    height: 15px;
+    width: 100%;
+    cursor: row-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
+
+.react-resizable-handle-e {
+    width: 15px;
+    min-width: 10px;
+    height: 100%;
+    cursor: col-resize;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.resize-horizontal {
+    display: flex;
+    flex-direction: row;
 }
