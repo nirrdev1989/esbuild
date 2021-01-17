@@ -1,14 +1,5 @@
 import * as esbuild from 'esbuild-wasm';
 
-
-// async function loadDB() {
-//    await fileCache.setItem('color', 'red')
-
-//    const color = await fileCache.getItem('color')
-
-// }
-
-
 export const unpkgPathPlugin = () => {
    return {
       name: 'unpkg-path-plugin',
@@ -30,9 +21,9 @@ export const unpkgPathPlugin = () => {
          build.onResolve({ filter: /.*/ }, async (args: any) => {
             return {
                namespace: 'a',
-               path: `https://unpkg.com/${args.path}`,
-            };
-         });
-      },
-   };
-};
+               path: `https://unpkg.com/${args.path}`
+            }
+         })
+      }
+   }
+}
