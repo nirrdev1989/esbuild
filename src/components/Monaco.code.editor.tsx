@@ -3,12 +3,14 @@ import React, { useRef } from "react";
 import prettier from "prettier";
 import parser from 'prettier/parser-babel'
 
+
 interface MonacoCodeEditorProps {
    initialValue: string
    editorChange: (value: string) => void
+   isDarkTheme: boolean
 }
 
-function MonacoCodeEditor({ editorChange, initialValue }: MonacoCodeEditorProps) {
+function MonacoCodeEditor({ editorChange, initialValue, isDarkTheme }: MonacoCodeEditorProps) {
 
    const editorRef = useRef<any>()
 
@@ -33,15 +35,21 @@ function MonacoCodeEditor({ editorChange, initialValue }: MonacoCodeEditorProps)
       editorRef.current.setValue(formated)
    }
 
+
    return (
       <React.Fragment>
          <div className="editor-con">
-            <button className="" onClick={handleFormat}>Format</button>
+            <button
+               title="Format code"
+               className="btn-custom"
+               onClick={handleFormat}>
+               Format
+            </button>
             <MonacoEditor
                editorDidMount={onEditorDidMount}
                value={initialValue}
                language="javascript"
-               theme="vs-dark"
+               theme={`${isDarkTheme ? 'vs-dark' : 'vs-light'}`}
                height={'100%'}
                options={{
                   wordWrap: 'on',

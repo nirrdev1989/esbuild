@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react'
 
 interface PreviewProps {
    code: string
+   errorMessageFromBundler: string
 }
-
 
 const html = `
 <html>
@@ -12,13 +12,18 @@ const html = `
     <body>
     <div id="root"></div>
     <script>
+      
+    function handleError(error) {
+      document.querySelector('#root')
+      root.innerHTML = '<div style="color: red;">' + error + '</div>'
+   }
+
     window.addEventListener('message', (event) => {
-      console.log(event.data)
+      console.log(event.data, 'IFRAME')
       try {
          eval(event.data)
       }catch(error) {
-         document.querySelector('#root')
-         root.innerHTML = '<div>' + error + '</div>'
+         handleError(error)
       }
     }, false)
 
@@ -27,13 +32,15 @@ const html = `
 </html>
 `
 
-function Preview({ code }: PreviewProps) {
-
+function PreviewIframe({ errorMessageFromBundler, code }: PreviewProps) {
    const iframe = useRef<any>()
 
    useEffect(() => {
       iframe.current.srcdoc = html
-      iframe.current.contentWindow.postMessage(code, '*')
+
+      setTimeout(() => {
+         iframe.current.contentWindow.postMessage(code, '*')
+      }, 100);
    }, [code])
 
 
@@ -41,14 +48,16 @@ function Preview({ code }: PreviewProps) {
       <React.Fragment>
          <div className="preview-wrapper">
             <iframe
+               frameBorder="0"
                title="code preview"
                ref={iframe}
                sandbox="allow-scripts"
                srcDoc={html}
             />
+            {errorMessageFromBundler && <div className="preview-error "> {errorMessageFromBundler} </div>}
          </div>
       </React.Fragment>
    )
 }
 
-export default Preview
+export default PreviewIframe

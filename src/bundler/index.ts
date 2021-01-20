@@ -5,28 +5,40 @@ import { fetchPlugin } from './plugins/fetch-plugin';
 let service: esbuild.Service
 
 async function bundler(code: string) {
-   if (!service) {
-      service = await esbuild.startService({
-         worker: true,
-         wasmURL: '/esbuild.wasm'
-      })
-   }
+    console.log(code)
+    if (!service) {
+        service = await esbuild.startService({
+            worker: true,
+            wasmURL: '/esbuild.wasm'
+        })
+    }
 
-   const result = await service.build({
-      entryPoints: ['index.js'],
-      bundle: true,
-      write: false,
-      plugins: [
-         unpkgPathPlugin(),
-         fetchPlugin(code)
-      ],
-      define: {
-         'process.env.NODE_ENV': '"production"',
-         global: 'window'
-      }
-   })
+    try {
+        const result = await service.build({
+            entryPoints: ['index.js'],
+            bundle: true,
+            write: false,
+            plugins: [
+                unpkgPathPlugin(),
+                fetchPlugin(code)
+            ],
+            define: {
+                'process.env.NODE_ENV': '"production"',
+                global: 'window'
+            }
+        })
 
-   return result.outputFiles[0].text
+        return {
+            code: result.outputFiles[0].text,
+            error: ''
+        }
+    } catch (error) {
+        return {
+            error: error.message,
+            code: ''
+        }
+    }
+
 }
 
 export default bundler

@@ -20,7 +20,7 @@ export function fetchPlugin(input: string) {
 
          build.onLoad({ filter: /.*/ }, async (args: any) => {
             const cacheResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path)
-
+            // console.log(cacheResult)
             if (cacheResult) {
                return cacheResult
             }
@@ -44,7 +44,6 @@ export function fetchPlugin(input: string) {
                loader: 'jsx',
                contents: contents,
                resolveDir: new URL('./', request.responseURL).pathname,
-
             }
 
             await fileCache.setItem(args.path, result)
@@ -65,7 +64,6 @@ export function fetchPlugin(input: string) {
             await fileCache.setItem(args.path, result)
 
             return result
-
          })
       }
    }

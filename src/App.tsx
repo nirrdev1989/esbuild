@@ -1,14 +1,18 @@
 import React from 'react';
+import CellList from "./components/Cell.list";
+import Navbar from './components/Navbar';
 import './App.css';
-import CodeEditorItem from './components/Code.editor.item';
 
 
 function App() {
    return (
       <React.Fragment>
-         <div>
-            <CodeEditorItem />
-         </div>
+         <Navbar />
+         <main className="container">
+            <div className="cell-list-con">
+               <CellList />
+            </div>
+         </main>
       </React.Fragment>
    );
 }

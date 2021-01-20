@@ -1,3 +1,19 @@
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cell-list-con {
+    margin-top: 7rem;
+    margin-bottom: 2rem;
+}
+
+.cell-list-item {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
 /* EDITOR */
 
 .editor-con {
@@ -7,7 +23,7 @@
     width: calc(100% - 10px);
 }
 
-.editor-con button {
+.editor-con .btn-custom {
     position: absolute;
     top: 5px;
     right: 20px;
@@ -16,7 +32,7 @@
     transition: opacity 0.3s;
 }
 
-.editor-con:hover button {
+.editor-con:hover .btn-custom {
     opacity: 1;
 }
 
@@ -29,11 +45,22 @@
 }
 
 .preview-wrapper iframe {
-    height: 98%;
+    height: 100%;
     width: 100%;
     background-color: white;
     border: none;
+    border-right: solid 2px #37414b;
+    ;
 }
+
+.preview-error {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: red;
+}
+
+/* RESIZE */
 
 .react-draggable-transparent-selection .preview-wrapper::after {
     content: '';
@@ -44,8 +71,6 @@
     right: 0;
     opacity: 0;
 }
-
-/* RESIZE */
 
 .react-resizable-handle {
     display: block;
@@ -63,7 +88,6 @@
 
 .react-resizable-handle-e {
     width: 15px;
-    min-width: 10px;
     height: 100%;
     cursor: col-resize;
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
@@ -72,4 +96,77 @@
 .resize-horizontal {
     display: flex;
     flex-direction: row;
+}
+
+.margin-view-overlays {
+    border-left: 2px solid #37414b;
+}
+
+/* CELL BAR */
+
+.cell-bar-btns {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.cell-bar-con {
+    height: 2rem;
+    width: 100%;
+    background-color: #37414b;
+}
+
+/* NAV */
+
+nav {
+    z-index: 10;
+    position: fixed;
+    padding: 20px;
+    width: 100%;
+    background: rgb(0 0 0 / 70%);
+    /* margin-bottom: 3rem; */
+}
+
+.toggle-icon {
+    color: 'yellow';
+    font-size: '30px';
+    float: 'right';
+}
+
+.loader-con {
+    height: 100%;
+    flex-grow: 1;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 30px;
+    height: 30px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

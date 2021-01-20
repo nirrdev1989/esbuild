@@ -23,7 +23,7 @@ function ResizeContainer({ dirrection, children }: ResizableContainerProps) {
       }
    } else {
       resizeOptions = {
-         maxConstraints: [Infinity, windowHeight * 0.8],
+         maxConstraints: [Infinity, windowHeight * 0.7],
          minConstraints: [Infinity, 50],
          resizeHandles: ['s'],
          height: 300,
