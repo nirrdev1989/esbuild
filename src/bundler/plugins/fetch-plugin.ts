@@ -20,7 +20,7 @@ export function fetchPlugin(input: string) {
 
          build.onLoad({ filter: /.*/ }, async (args: any) => {
             const cacheResult = await fileCache.getItem<esbuild.OnLoadResult>(args.path)
-            // console.log(cacheResult)
+            console.log(args.path)
             if (cacheResult) {
                return cacheResult
             }
@@ -28,6 +28,9 @@ export function fetchPlugin(input: string) {
 
          build.onLoad({ filter: /.css$/ }, async (args: any) => {
             const { data, request } = await axios.get(args.path);
+
+            console.log(args.path)
+
 
             const escaped = data
                .replace(/\n/g, '')
@@ -54,6 +57,9 @@ export function fetchPlugin(input: string) {
          build.onLoad({ filter: /.*/ }, async (args: any) => {
 
             const { data, request } = await axios.get(args.path);
+
+            console.log(args.path)
+
 
             const result: esbuild.OnLoadResult = {
                loader: 'jsx',

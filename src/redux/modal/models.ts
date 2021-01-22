@@ -1,0 +1,1 @@
+export type OrderComponentName = 'FORM' | 'INFO' | 'NULL'

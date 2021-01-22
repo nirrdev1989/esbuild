@@ -5,7 +5,7 @@ interface PreviewProps {
    errorMessageFromBundler: string
 }
 
-const html = `
+const html: string = `
 <html>
     <head>
     </head>
@@ -19,7 +19,7 @@ const html = `
    }
 
     window.addEventListener('message', (event) => {
-      console.log(event.data, 'IFRAME')
+     // console.log(event.data, 'IFRAME')
       try {
          eval(event.data)
       }catch(error) {

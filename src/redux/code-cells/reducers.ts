@@ -10,6 +10,11 @@ interface CodeCellState {
         [key: string]: CodeCell
     }
     themeIsDark: boolean
+    activeEditCellInfo: {
+        title: string
+        id: string
+        description: string
+    }
 }
 
 const INITIAL_STATE: CodeCellState = {
@@ -17,7 +22,12 @@ const INITIAL_STATE: CodeCellState = {
     error: null,
     order: [],
     data: {},
-    themeIsDark: false
+    themeIsDark: false,
+    activeEditCellInfo: {
+        id: '',
+        title: '',
+        description: ''
+    }
 }
 
 
@@ -45,13 +55,42 @@ export const codeCellReducer = produce((state: CodeCellState = INITIAL_STATE, ac
 
             return state
         case ActionsTypesNamesCodeCell.ADD_CODE_CELL:
-            const codeCell: CodeCell = {
-                id: generateRandomId(),
-                content: `const x = ${Math.floor(Math.random() * 10000)}`,
+            let codeCell: CodeCell
+            if (state.order.length === 0) {
+                codeCell = {
+                    id: generateRandomId(),
+                    content: `document.getElementById('root').textContent = "Hello"`,
+                    init: true,
+                    title: 'Exsmple',
+                    description: 'This is exsmple snippet'
+
+                }
+            } else {
+                codeCell = {
+                    id: generateRandomId(),
+                    content: ``,
+                    init: false,
+                    title: action.payload.title,
+                    description: action.payload.description
+                }
             }
 
             state.data[codeCell.id] = codeCell
             state.order.push(codeCell.id)
+
+            return state
+        case ActionsTypesNamesCodeCell.UPDATE_CODE_CELL_INFO:
+            const currentInfo = state.activeEditCellInfo
+
+            state.data[currentInfo.id].title = action.payload.title
+            state.data[currentInfo.id].description = action.payload.description
+
+            state.activeEditCellInfo.description = ''
+            state.activeEditCellInfo.title = ''
+
+            return state
+        case ActionsTypesNamesCodeCell.SET_CURRENT_CODE_CELL:
+            state.activeEditCellInfo = action.payload
 
             return state
         case ActionsTypesNamesCodeCell.TOGGLE_EDITOR_THEME:
@@ -64,5 +103,5 @@ export const codeCellReducer = produce((state: CodeCellState = INITIAL_STATE, ac
 })
 
 export function generateRandomId() {
-    return Math.random().toString(36).substring(2, 5)
+    return Math.random().toString(36).substring(2, 7) + Math.random()
 }

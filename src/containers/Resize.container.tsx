@@ -23,7 +23,7 @@ function ResizeContainer({ dirrection, children }: ResizableContainerProps) {
       }
    } else {
       resizeOptions = {
-         maxConstraints: [Infinity, windowHeight * 0.7],
+         maxConstraints: [Infinity, windowHeight * 0.67],
          minConstraints: [Infinity, 50],
          resizeHandles: ['s'],
          height: 300,
@@ -32,7 +32,6 @@ function ResizeContainer({ dirrection, children }: ResizableContainerProps) {
    }
 
    useEffect(() => {
-
       let timer: any
 
       function resizeEvent() {

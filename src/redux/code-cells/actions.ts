@@ -4,7 +4,9 @@ import {
     DeleteCodeCellActionType,
     UpdateCodeCellActionType,
     AddCodeCellActionType,
-    ToggleEditorThemeActionType
+    ToggleEditorThemeActionType,
+    UpdateCodeCellInfoActionType,
+    SetCurrentCodeCellType
 } from "./actions.types";
 import { CodeCellMoveType } from "./models";
 
@@ -26,11 +28,24 @@ export function deleteCodeCell(id: string): DeleteCodeCellActionType {
     }
 }
 
-export function addCodeCell(id: string): AddCodeCellActionType {
+export function addCodeCell(id: string, title: string, description: string): AddCodeCellActionType {
     return {
         type: ActionsTypesNamesCodeCell.ADD_CODE_CELL,
         payload: {
             id: id,
+            title: title,
+            description: description
+        }
+    }
+}
+
+export function updateCodeCellInfo(id: string, title: string, description: string): UpdateCodeCellInfoActionType {
+    return {
+        type: ActionsTypesNamesCodeCell.UPDATE_CODE_CELL_INFO,
+        payload: {
+            id: id,
+            title: title,
+            description: description
         }
     }
 }
@@ -41,6 +56,17 @@ export function updateCodeCell(id: string, content: string): UpdateCodeCellActio
         payload: {
             id: id,
             content: content
+        }
+    }
+}
+
+export function setCurrentCodeCell(id: string, title: string, description: string): SetCurrentCodeCellType {
+    return {
+        type: ActionsTypesNamesCodeCell.SET_CURRENT_CODE_CELL,
+        payload: {
+            id: id,
+            title: title,
+            description: description
         }
     }
 }

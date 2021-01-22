@@ -16,7 +16,12 @@ function MonacoCodeEditor({ editorChange, initialValue, isDarkTheme }: MonacoCod
 
    const onEditorDidMount: EditorDidMount = function (getValue, monacoEditor) {
       editorRef.current = monacoEditor
-      monacoEditor.onDidChangeModelContent(() => {
+
+      monacoEditor.onDidChangeModelContent((x) => {
+         if (x.changes[0].text === ' ' || x.changes[0].text.match(/\n/)) {
+            return
+         }
+
          editorChange(getValue())
       })
    }

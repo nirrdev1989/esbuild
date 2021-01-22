@@ -1,11 +1,13 @@
-import { CodeCellMoveType } from "./models";
+import { CodeCellInfo, CodeCellMoveType } from "./models";
 
 export enum ActionsTypesNamesCodeCell {
     MOVE_CODE_CELL = 'MOVE_CODE_CELL',
     DELETE_CODE_CELL = 'DELETE_CODE_CELL',
     ADD_CODE_CELL = 'ADD_CODE_CELL',
     UPDATE_CODE_CELL = 'UPDATE_CODE_CELL',
-    TOGGLE_EDITOR_THEME = 'TOGGLE_EDITOR_THEME'
+    TOGGLE_EDITOR_THEME = 'TOGGLE_EDITOR_THEME',
+    UPDATE_CODE_CELL_INFO = 'UPDATE_CODE_CELL_INFO',
+    SET_CURRENT_CODE_CELL = 'SET_CURRENT_CODE_CELL'
 }
 
 
@@ -24,9 +26,7 @@ export interface DeleteCodeCellActionType {
 
 export interface AddCodeCellActionType {
     type: ActionsTypesNamesCodeCell.ADD_CODE_CELL
-    payload: {
-        id: string | null
-    }
+    payload: CodeCellInfo
 }
 
 export interface UpdateCodeCellActionType {
@@ -34,6 +34,20 @@ export interface UpdateCodeCellActionType {
     payload: {
         id: string
         content: string
+    }
+}
+
+export interface UpdateCodeCellInfoActionType {
+    type: ActionsTypesNamesCodeCell.UPDATE_CODE_CELL_INFO
+    payload: CodeCellInfo
+}
+
+export interface SetCurrentCodeCellType {
+    type: ActionsTypesNamesCodeCell.SET_CURRENT_CODE_CELL
+    payload: {
+        id: string
+        title: string
+        description: string
     }
 }
 
@@ -46,4 +60,6 @@ export type CodeCellActionsTypes =
     AddCodeCellActionType |
     UpdateCodeCellActionType |
     DeleteCodeCellActionType |
-    ToggleEditorThemeActionType
+    UpdateCodeCellInfoActionType |
+    SetCurrentCodeCellType |
+    ToggleEditorThemeActionType 

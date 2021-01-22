@@ -14,16 +14,13 @@ const INITIAL_STATE: BundleState = {}
 export const bundleReducer = produce((state: BundleState = INITIAL_STATE, action: BundleActionsTypes) => {
     switch (action.type) {
         case ActionsTypesNamesBundle.BUNDLE_START:
-
             state[action.payload.cellId] = {
                 loading: true,
                 code: '',
                 error: ''
             }
-
             return state
         case ActionsTypesNamesBundle.BUNDLE_END:
-
             state[action.payload.cellId] = {
                 loading: false,
                 code: action.payload.bundle.code,
