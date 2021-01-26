@@ -23,7 +23,7 @@ function ResizeContainer({ dirrection, children }: ResizableContainerProps) {
       }
    } else {
       resizeOptions = {
-         maxConstraints: [Infinity, windowHeight * 0.67],
+         maxConstraints: [Infinity, windowHeight * 0.70],
          minConstraints: [Infinity, 50],
          resizeHandles: ['s'],
          height: 300,
@@ -34,6 +34,9 @@ function ResizeContainer({ dirrection, children }: ResizableContainerProps) {
    useEffect(() => {
       let timer: any
 
+      // if (window.innerHeight < 620) {
+      //    window.document.body.style.overflowY = 'hidden'
+      // }
       function resizeEvent() {
          if (timer) {
             clearTimeout(timer)
@@ -47,6 +50,7 @@ function ResizeContainer({ dirrection, children }: ResizableContainerProps) {
       window.addEventListener('resize', resizeEvent)
 
       return () => {
+         console.log(window.innerWidth, window.innerHeight)
          window.removeEventListener('resize', resizeEvent)
       }
 

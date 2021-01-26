@@ -1,5 +1,5 @@
 
-export default function Note() {
+function Note() {
    return (
       <div className="alert alert-warning alert-dismissible fade show" role="alert">
          <strong>Note! </strong>
@@ -9,3 +9,5 @@ export default function Note() {
       </div>
    )
 }
+
+export default Note

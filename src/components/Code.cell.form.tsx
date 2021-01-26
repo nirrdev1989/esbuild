@@ -30,7 +30,7 @@ function CodeCellForm({ initialState }: CodeCellFormProps) {
       closeModalAction()
    }
 
-   function handleChnage(event: ChangeEvent<HTMLInputElement>) {
+   function handleChnage(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
       const { value, name } = event.target
       setValues((prev) => {
          return {
@@ -46,6 +46,7 @@ function CodeCellForm({ initialState }: CodeCellFormProps) {
             <div className="mb-3">
                <label>Title*</label>
                <input
+                  maxLength={25}
                   type="text"
                   value={values.title}
                   name="title"
@@ -56,16 +57,17 @@ function CodeCellForm({ initialState }: CodeCellFormProps) {
                />
             </div>
             <div className=" mb-3">
-               <label>Description*</label>
-               <input
-                  type="text"
+               <label >Description*</label>
+               <textarea
                   value={values.description}
                   name="description"
                   onChange={handleChnage}
                   className="form-control"
                   placeholder="Description"
                   required
-               />
+                  cols={30}
+                  rows={5}>
+               </textarea>
             </div>
             <button className="btn-custom" type="submit" >Submit</button>
          </form>

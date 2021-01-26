@@ -11,7 +11,7 @@ interface CellListItemProps {
 }
 
 function CellListItem({ cell }: CellListItemProps) {
-   const { openModalAction, modalOrderComponent } = useActionsModal()
+   const { openModalWithOrderComponent } = useActionsModal()
    const { setCurrentCodeCell } = useActionsCodeCell()
 
    let codeCellInfo = {
@@ -21,7 +21,7 @@ function CellListItem({ cell }: CellListItemProps) {
    }
 
    return (
-      <div className={"animate-center"}>
+      <div className={"animate-center-one"} id={`${cell.id}`}>
          <div className="cell-list-item">
             <div className="cell-bar-con">
                <CodeCellBar codeCellInfo={codeCellInfo} />
@@ -32,9 +32,8 @@ function CellListItem({ cell }: CellListItemProps) {
                      style={{ cursor: 'pointer' }}
                      title="Edit title"
                      onClick={() => {
-                        openModalAction()
                         setCurrentCodeCell(cell.id, cell.title, cell.description)
-                        modalOrderComponent('FORM')
+                        openModalWithOrderComponent('FORM')
                      }}>
                      {Edit}&nbsp;
                   </span>

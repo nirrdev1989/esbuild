@@ -1,11 +1,67 @@
 .cell-list-con {
     margin-top: 4rem;
     margin-bottom: 4rem;
+    /* position: relative; */
 }
 
 .cell-list-item {
-    position: relative;
+    /* position: relative; */
     margin-bottom: 2rem;
+    /* min-height: 10vh; */
+    margin-top: 2rem;
+}
+
+/* CELL TITLES BAR SLIDE   */
+
+.cell-titles-bar {
+    width: 100%;
+    height: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    grid-gap: 0.5rem;
+}
+
+a.btn-custom {
+    /* width: 5rem; */
+    text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    line-height: 27px;
+    max-width: 5rem;
+    background-color: var(--color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* SLIDE BAR () */
+
+.cell-titles-bar div:last-child, .cell-titles-bar div:first-child {
+    /* background-color: red; */
+    align-self: center;
+}
+
+.cell-titles-bar div:last-child svg, .cell-titles-bar div:first-child svg {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+.cell-titles-bar .grid-bar-item-title-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.cell-titles-bar div:last-child {
+    display: flex;
+    justify-self: start;
+}
+
+.cell-titles-bar div:first-child {
+    display: flex;
+    justify-self: end;
 }
 
 /* EDITOR */
@@ -55,6 +111,10 @@
 }
 
 /* RESIZE */
+
+.react-draggable-transparent-selection .cell-list-con {
+    margin-bottom: 100vh;
+}
 
 .react-draggable-transparent-selection .preview-wrapper::after {
     content: '';
@@ -116,20 +176,44 @@
 /* NAV */
 
 nav {
-    z-index: 10;
+    /* overflow: hidden; */
+    z-index: 1000;
     position: fixed;
     padding: 5px;
     width: 100%;
-    background: rgb(0 0 0 / 70%);
+    background-color: rgb(41, 41, 41);
 }
 
 .nav-items {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    /* margin-left: 0.2rem; */
+    margin-right: 0.2rem;
 }
+
+.nav-items .nav-btns {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+
+/* DROPDOWN  */
+
+.dropdown-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 8rem;
+    /* height: 1rem; */
+}
+
+.dropdown-item:hover {
+    background-color: white;
+}
+
+/* LOADER  */
 
 .loader-con {
     height: 100%;
@@ -170,12 +254,20 @@ nav {
 
 /* FADE */
 
-.animate-center {
+.animate-center-one {
     position: relative;
     -webkit-animation-name: animate-center;
     -webkit-animation-duration: 1.0s;
     animation-name: animate-center;
     animation-duration: 1.0s
+}
+
+.animate-center-half {
+    position: relative;
+    -webkit-animation-name: animate-center;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animate-center;
+    animation-duration: 0.5s
 }
 
 @keyframes animate-center {
@@ -196,7 +288,7 @@ nav {
     height: 100%;
     top: 0;
     left: 0;
-    background-color: rgb(0 0 0 / 70%);
+    background-color: rgb(0 0 0 / 75%);
     z-index: 1000;
     position: fixed;
     display: flex;
@@ -213,11 +305,10 @@ nav {
 }
 
 .modal-header {
-    border-bottom: 1px solid rgb(179, 179, 179);
+    border-bottom: 1px solid var(--light);
 }
 
 .modal-wrapper .modal-body {
-    background-color: var(--background-color);
     height: 70%;
     overflow-y: auto;
 }

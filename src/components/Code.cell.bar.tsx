@@ -8,7 +8,7 @@ interface CodeCellBarProps {
 
 function CodeCellBar({ codeCellInfo }: CodeCellBarProps) {
    const { moveCodeCell, deleteCodeCell, setCurrentCodeCell } = useActionsCodeCell()
-   const { openModalAction, modalOrderComponent } = useActionsModal()
+   const { openModalWithOrderComponent } = useActionsModal()
 
    return (
       <div className="cell-bar-btns">
@@ -28,9 +28,9 @@ function CodeCellBar({ codeCellInfo }: CodeCellBarProps) {
             title="Read description"
             className="btn-custom"
             onClick={() => {
-               openModalAction()
                setCurrentCodeCell(codeCellInfo.id || '', codeCellInfo.title, codeCellInfo.description)
-               modalOrderComponent('INFO')
+               openModalWithOrderComponent('INFO')
+
             }}>
             {Read}
          </button>

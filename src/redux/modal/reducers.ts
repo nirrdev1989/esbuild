@@ -14,20 +14,15 @@ const INITIAL_STATE: ModalState = {
 
 export function modalRducer(state: ModalState = INITIAL_STATE, action: ModalActionsTypes) {
     switch (action.type) {
-        case ActionsTypesNamesModal.OPEN_MODAL:
+        case ActionsTypesNamesModal.OPEN_MODAL_WITH_ORDER_COMPONENT:
             return {
-                ...state,
+                orderComponent: action.payload,
                 isOpen: true
             }
         case ActionsTypesNamesModal.CLOSE_MODAL:
             return {
                 ...state,
                 isOpen: false
-            }
-        case ActionsTypesNamesModal.ORDER_COMPONENT:
-            return {
-                ...state,
-                orderComponent: action.payload
             }
         default:
             return state

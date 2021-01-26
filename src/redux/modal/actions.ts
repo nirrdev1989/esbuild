@@ -1,11 +1,7 @@
-import { ActionsTypesNamesModal, CloseModalActionType, ModalOrderComponentType, OpenModalActionType } from "./actions.types";
+import { ActionsTypesNamesModal, CloseModalActionType, OpenModalWithOrderComponentActionType } from "./actions.types";
 import { OrderComponentName } from "./models";
 
-export function openModalAction(): OpenModalActionType {
-    return {
-        type: ActionsTypesNamesModal.OPEN_MODAL
-    }
-}
+
 
 export function closeModalAction(): CloseModalActionType {
     return {
@@ -13,9 +9,10 @@ export function closeModalAction(): CloseModalActionType {
     }
 }
 
-export function modalOrderComponent(componentName: OrderComponentName): ModalOrderComponentType {
+export function openModalWithOrderComponent(componentName: OrderComponentName): OpenModalWithOrderComponentActionType {
     return {
-        type: ActionsTypesNamesModal.ORDER_COMPONENT,
+        type: ActionsTypesNamesModal.OPEN_MODAL_WITH_ORDER_COMPONENT,
         payload: componentName
     }
 }
+

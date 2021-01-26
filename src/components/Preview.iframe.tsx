@@ -18,6 +18,14 @@ const html: string = `
       root.innerHTML = '<div style="color: red;">' + error + '</div>'
    }
 
+   function printValue(value) {
+      if(typeof value === 'object') {
+         document.querySelector('#root').innerHTML =JSON.stringify(value) 
+      }else {
+         document.querySelector('#root').innerHTML = value
+      }
+   }
+
     window.addEventListener('message', (event) => {
      // console.log(event.data, 'IFRAME')
       try {

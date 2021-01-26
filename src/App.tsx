@@ -6,15 +6,14 @@ import Modal from './components/Modal';
 import { usetTypedSelector } from './hooks/useTypedSelector';
 import CodeCellForm from './components/Code.cell.form';
 import CodeCellInformation from "./components/Code.cell.info";
-import './App.css';
 import { OrderComponentName } from './redux/modal/models';
+import { BrowserRouter } from "react-router-dom";
+import './App.css';
 
 
 function App() {
    const modal = usetTypedSelector((state) => state.modal)
    const currentCodeCell = usetTypedSelector((state) => state.codeCell.activeEditCellInfo)
-
-   console.log(modal)
 
    function modalOrder(componentName: OrderComponentName) {
       switch (componentName) {
@@ -29,17 +28,19 @@ function App() {
 
    return (
       <React.Fragment>
-         <Navbar />
-         <main className="container">
-            <div className="cell-list-con">
-               <Note />
-               <CellList />
-            </div>
-         </main>
-         {modal.isOpen &&
-            <React.Fragment>
-               <Modal> {modalOrder(modal.orderComponent)}</Modal >
-            </React.Fragment>}
+         <BrowserRouter>
+            <Navbar />
+            <main className="container">
+               <div className="cell-list-con">
+                  <Note />
+                  <CellList />
+               </div>
+            </main>
+            {modal.isOpen &&
+               <React.Fragment >
+                  <Modal> {modalOrder(modal.orderComponent)}</Modal >
+               </React.Fragment>}
+         </BrowserRouter>
       </React.Fragment>
    )
 }
