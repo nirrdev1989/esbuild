@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-allow u to create javascript snippets
+tool that allow u to create javascript snippets with esbuild .
 Project based on Udemy course , with my modifications and additions
 
 ![](src/screenshots/ES1.png)
