@@ -1,4 +1,6 @@
 # Getting Started with Create React App
+allow u to create javascript snippets
+Project based on Udemy course , with my modifications and additions
 
 ![](src/screenshots/ES1.png)
 
